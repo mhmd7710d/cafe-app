@@ -13,6 +13,10 @@ party:<><ellipse cx="12" cy="9" rx="5.5" ry="6.5"/><path d="M12 15.5l-1.5 2.5h3z
 camera:<><rect x="3" y="7" width="18" height="12" rx="2.5"/><circle cx="12" cy="13" r="3.6"/><path d="M8.5 7l1.2-2.5h4.6L15.5 7"/></>,
 cup:<><path d="M5 9h11v5a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z"/><path d="M16 11h2a2 2 0 0 1 0 4h-2M8 3c-1 1 1 2 0 3M12 3c-1 1 1 2 0 3"/></>,
 star:<><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"/></>,
+phone:<><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></>,
+wa:<><path d="M4 20l1.3-4.2A8.5 8.5 0 1 1 8.4 19z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2z"/></>,
+pin:<><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></>,
+clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
 food:<><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M8 3v6"/><path d="M17 3c-2 2-3 5-3 8h3v10"/></>}
 const Icon=({n})=><svg className="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{P[n]}</svg>
 const areas=[
@@ -65,6 +69,8 @@ const open=()=>setSel({it,pr,desc})
 return <li key={it[0]} role="button" tabIndex={0} onClick={open} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}}} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}<small className="hint">اضغط على الصنف تشوف صورته وتفاصيله</small></div><i/>{pr}</li>})}</ul>
 {sel&&<div className="mdl" onClick={()=>setSel(null)}><div className="mcard" role="dialog" aria-label={sel.it[0]} onClick={e=>e.stopPropagation()}><button className="x" aria-label="إغلاق" onClick={()=>setSel(null)}>×</button><img src={MI(PH.get(sel.it))} alt={sel.it[0]} width="560" height="560"/><h3>{sel.it[0]}</h3><p className="ing"><b>المكونات:</b> {sel.desc||ING[PH.get(sel.it)]}</p><div className="mp">{sel.pr}</div></div></div>}
 </section>}
+const CONTACT=['01023163617','01040428475']
+const SOCIAL=[] // add {n:'فيسبوك',u:'https://...'} once the real links are known
 const WA=['201226622875','201040428475']
 const fmtDay=d=>{const[y,m,x]=d.split('-').map(Number);return new Intl.DateTimeFormat('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(y,m-1,x)))}
 const fmtTime=t=>{const[h,m]=t.split(':').map(Number);return new Intl.DateTimeFormat('ar-EG',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'UTC'}).format(new Date(Date.UTC(2000,0,1,h,m)))}
@@ -99,10 +105,14 @@ return <>
 <div className="trio"><img src={I('a1')} alt="" loading="lazy"/><img src={I('a2')} alt="" loading="lazy"/><img src={I('a3')} alt="" loading="lazy"/></div></section>
 <section id="book" className="book" style={{backgroundImage:`url(${I('nile')})`}}><div className="shade"/><div className="in"><span className="eyebrow">الحجز</span><h2>طاولتك مستنياك</h2><p className="sub">احجز دلوقتي واستمتع بوقت لا يتنسي.</p>
 <BookForm/></div></section>
-<footer><div className="cols"><div><b><Icon n="tree"/>قرية عروس النيل</b><span>أكل حلو، لحظات حلوة.</span></div>
-<div><h4>روابط</h4><a href="#story">عن المكان</a><a href="#areas">الأماكن</a><a href="#menu">المنيو</a><a href="#book">الحجز</a></div>
-<div><h4>تواصل</h4><span>المحمودية – البحيرة – كوبري فوه بجانب العبارة سوليتير</span><a href="tel:01023163617" dir="ltr">01023163617</a><a href="tel:01040428475" dir="ltr">01040428475</a></div>
-<div><h4>مواعيد العمل</h4><span>9 صباحاً ل 3 صباحاً</span><span>الجمعة بعد صلاة الجمعة ل 3 صباحاً</span></div></div><small>© قرية عروس النيل</small></footer>
+<footer className="ft"><div className="fbrand"><img src={LOGO} alt="قرية عروس النيل" width="1536" height="1024" loading="lazy"/></div>
+<div className="fmain"><p className="ftag">أكل حلو، لحظات حلوة.</p>
+<div className="fcta">{CONTACT.map(n=><a key={'w'+n} className="fb wa" href={`https://wa.me/20${n.slice(1)}`} target="_blank" rel="noopener"><Icon n="wa"/><span>واتساب</span><bdi dir="ltr">{n}</bdi></a>)}{CONTACT.map(n=><a key={'c'+n} className="fb" href={`tel:${n}`}><Icon n="phone"/><span>اتصل</span><bdi dir="ltr">{n}</bdi></a>)}</div>
+<div className="finfo"><div className="fbox"><h4><Icon n="pin"/>العنوان</h4><p>المحمودية – البحيرة<br/>كوبري فوه، بجانب العبارة سوليتير</p></div>
+<div className="fbox"><h4><Icon n="clock"/>مواعيد العمل</h4><table><tbody><tr><td>يومياً</td><td>9 صباحاً – 3 صباحاً</td></tr><tr><td>الجمعة</td><td>بعد صلاة الجمعة – 3 صباحاً</td></tr></tbody></table></div></div>
+<nav className="flinks"><a href="#story">عن المكان</a><a href="#areas">الأماكن</a><a href="#menu">المنيو</a><a href="#book">الحجز</a></nav>
+{SOCIAL.length>0&&<div className="fsoc">{SOCIAL.map(x=><a key={x.n} href={x.u} target="_blank" rel="noopener" aria-label={x.n}>{x.n}</a>)}</div>}
+<div className="fcopy">© 2026 قرية عروس النيل. جميع الحقوق محفوظة</div></div></footer>
 </>}
 createRoot(document.getElementById('root')).render(<App/>)
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js')

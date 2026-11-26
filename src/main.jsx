@@ -67,7 +67,7 @@ const desc=it[3]
 const pr=<span className="pr">{kind==='size'||kind==='tier'?<><em>{kind==='size'?'وسط':'عادي'}</em><J v={price[0]}/><em>{kind==='size'?'كبير':'VIP'}</em><J v={price[1]}/></>:<J v={price[0]}/>}</span>
 const open=()=>setSel({it,pr,desc})
 return <li key={it[0]} role="button" tabIndex={0} onClick={open} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}}} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}<small className="hint">اضغط على الصنف تشوف صورته وتفاصيله</small></div><i/>{pr}</li>})}</ul>
-{sel&&<div className="mdl" onClick={()=>setSel(null)}><div className="mcard" role="dialog" aria-label={sel.it[0]} onClick={e=>e.stopPropagation()}><button className="x" aria-label="إغلاق" onClick={()=>setSel(null)}>×</button><img src={MI(PH.get(sel.it))} alt={sel.it[0]} width="560" height="560"/><h3>{sel.it[0]}</h3><p className="ing"><b>المكونات:</b> {sel.desc||ING[PH.get(sel.it)]}</p><div className="mp">{sel.pr}</div></div></div>}
+{sel&&<div className="mdl" onClick={()=>setSel(null)}><div className="mcard" role="dialog" aria-label={sel.it[0]} onClick={e=>e.stopPropagation()}><button className="x" aria-label="إغلاق" onClick={()=>setSel(null)}>×</button><img src={MI(PH.get(sel.it))} alt={sel.it[0]} width="560" height="560"/><h3>{sel.it[0]}</h3><p className="ing"><b>{sel.desc?"المكونات":"المكونات المعتادة"}:</b> {sel.desc||ING[PH.get(sel.it)]}</p><div className="mp">{sel.pr}</div></div></div>}
 </section>}
 const CONTACT=['01023163617','01040428475']
 const SOCIAL=[

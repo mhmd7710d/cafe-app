@@ -157,3 +157,6 @@ footer small{display:block;text-align:center;margin-top:22px;opacity:.6;border-t
 .mcard u{text-decoration:none;font:700 14px Body,Cairo;margin-inline-start:3px}
 
 .mcard .ing b{color:var(--green)}
+
+.form label{display:grid;gap:3px;color:#fff;font-size:12px;font-weight:700}
+.wa .pv{margin:0;background:#fff;color:var(--ink);padding:10px 12px;font:600 13px/1.8 Body,Cairo;white-space:pre-wrap;text-align:start}

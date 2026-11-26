@@ -66,14 +66,16 @@ return <li key={it[0]} role="button" tabIndex={0} onClick={open} onKeyDown={e=>{
 {sel&&<div className="mdl" onClick={()=>setSel(null)}><div className="mcard" role="dialog" aria-label={sel.it[0]} onClick={e=>e.stopPropagation()}><button className="x" aria-label="إغلاق" onClick={()=>setSel(null)}>×</button><img src={MI(PH.get(sel.it))} alt={sel.it[0]} width="560" height="560"/><h3>{sel.it[0]}</h3><p className="ing"><b>المكونات:</b> {sel.desc||ING[PH.get(sel.it)]}</p><div className="mp">{sel.pr}</div></div></div>}
 </section>}
 const WA=['201226622875','201040428475']
+const fmtDay=d=>{const[y,m,x]=d.split('-').map(Number);return new Intl.DateTimeFormat('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(y,m-1,x)))}
+const fmtTime=t=>{const[h,m]=t.split(':').map(Number);return new Intl.DateTimeFormat('ar-EG',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'UTC'}).format(new Date(Date.UTC(2000,0,1,h,m)))}
 function BookForm(){
-const [f,setF]=useState({a:areas[0].t,d:'',n:'',p:''});const [sent,setSent]=useState(false)
+const [f,setF]=useState({a:areas[0].t,d:'',t:'',n:'',p:''});const [sent,setSent]=useState(false)
 const u=k=>e=>setF({...f,[k]:e.target.value})
-const msg=`طلب حجز من الموقع:\nالمكان: ${f.a}\nالتاريخ: ${f.d}\nعدد الأفراد: ${f.n}\nرقم الموبايل: ${f.p}`
-return <form className="form" onSubmit={e=>{e.preventDefault();setSent(true)}}>
+const msg=sent?`طلب حجز من الموقع:\nالمكان: ${f.a}\nاليوم: ${fmtDay(f.d)}\nالساعة: ${fmtTime(f.t)}\nعدد الأفراد: ${f.n}\nرقم الموبايل: ${f.p}`:''
+return <form className="form" onSubmit={e=>{e.preventDefault();if(!f.d||!f.t)return;setSent(true)}}>
 <select value={f.a} onChange={u('a')}>{areas.map(a=><option key={a.t}>{a.t}</option>)}</select>
-<input type="date" required value={f.d} onChange={u('d')}/><input type="number" min="1" required placeholder="عدد الأفراد" value={f.n} onChange={u('n')}/><input type="tel" required placeholder="رقم الموبايل" value={f.p} onChange={u('p')}/>
-{!sent?<button className="btn green">احجز الآن ←</button>:<div className="wa"><span>الطلب جاهز. اضغط وابعته على واتساب:</span>{WA.map(n=><a key={n} className="btn green" target="_blank" rel="noopener" href={`https://wa.me/${n}?text=${encodeURIComponent(msg)}`} dir="ltr">واتساب 0{n.slice(2)}</a>)}<button type="button" className="btn ghost" onClick={()=>setSent(false)}>تعديل الطلب</button></div>}
+<label>اليوم<input type="date" required value={f.d} onChange={u('d')} onInput={u('d')}/></label><label>الساعة<input type="time" required value={f.t} onChange={u('t')} onInput={u('t')}/></label><input type="number" min="1" required placeholder="عدد الأفراد" value={f.n} onChange={u('n')}/><input type="tel" required placeholder="رقم الموبايل" value={f.p} onChange={u('p')}/>
+{!sent?<button className="btn green">احجز الآن ←</button>:<div className="wa"><span>الطلب جاهز. اضغط وابعته على واتساب:</span><pre className="pv">{msg}</pre>{WA.map(n=><a key={n} className="btn green" target="_blank" rel="noopener" href={`https://wa.me/${n}?text=${encodeURIComponent(msg)}`} dir="ltr">واتساب 0{n.slice(2)}</a>)}<button type="button" className="btn ghost" onClick={()=>setSent(false)}>تعديل الطلب</button></div>}
 </form>}
 function App(){
 return <>

@@ -1,4 +1,4 @@
-# Cafe App (React + Vite PWA)
+# عروس النيل - Cafe App (React + Vite PWA)
 
 موقع وتطبيق كافيه بالعربي (RTL)، بيتفتح من الموبايل ويتثبت زي أي أبلكيشن.
 A mobile-first Arabic cafe site/app: youth halls, kids area, family area, VIP room, event hall, photo location and restaurant.

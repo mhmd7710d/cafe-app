@@ -14,3 +14,19 @@ Good for explaining the project in an interview.
 
 ## Next steps
 Real photos, real menu and prices, cafe name/logo, address and hours, WhatsApp booking button, per-area detail pages.
+
+## Animations (what, where, how)
+All in `src/main.jsx` (logic/markup) and `src/style.css` (CSS, section comments `ANIM n`). No animation library, so the app stays small (about 70 KB gzipped).
+
+1. **Scroll reveal** - `Reveal` component. IntersectionObserver adds class `in` when the card enters the screen; CSS `.rv` / `.rv.in` fades and slides it up.
+2. **Counting numbers** - `Count` component. requestAnimationFrame counts 0 to N in 1.2 s with an ease-out curve when it becomes visible.
+3. **Steaming cup** - `Cup` (inline SVG) + `.steam` / `@keyframes steam, bob`. Three steam lines fade up with delays; the cup floats gently.
+4. **Rising coffee beans** - `Beans` + `.beans i` / `@keyframes rise`. 10 small beans drift up and spin, each with its own speed and delay.
+5. **Hero title words** - `.hero h1 span` / `@keyframes up`. Words appear one after another via `animation-delay`.
+6. **Pulsing booking button** - `.pulse` / `@keyframes pulse`. A soft gold ring repeats; buttons shrink slightly on tap.
+7. **Scrolling strip** - `.marquee` / `@keyframes slide`. Endless text strip (list is duplicated so the loop is seamless).
+8. **Card hover** - `.card:hover`, `@keyframes wig`. Card lifts, icon wiggles.
+9. **Menu items** - `.menu li`. Items slide in one by one when you switch tab (`key={tab}` remounts the list so the animation replays).
+10. **Nile waves** - `Waves` + `.waves svg` / `@keyframes wave`. Two wave layers slide at different speeds under the hero.
+
+Accessibility: `@media (prefers-reduced-motion: reduce)` turns all motion off for users who ask their phone for that.

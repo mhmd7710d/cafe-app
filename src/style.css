@@ -118,3 +118,7 @@ footer small{display:block;text-align:center;margin-top:22px;opacity:.6;border-t
 .brandband{position:relative;z-index:2;margin-top:-52px;background:var(--cream);border-radius:28px 28px 0 0;padding:18px 20px 0;text-align:center}
 .brandband img{width:min(100%,330px);height:auto}
 #areas{padding-top:6px}
+
+.brandband{margin:0;border-radius:0;padding:0;background:#faeedd;display:block;line-height:0}
+.brandband img{width:100%;max-width:900px;height:auto;margin:auto;display:block}
+.mk{background:#faeedd}

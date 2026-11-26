@@ -25,4 +25,4 @@ Light cream and forest-green look based on the owner's reference. Flat colors, n
 Fonts: El Messiri (headings) + Cairo (body), self-hosted.
 
 ## Logo
-The owner's finished logo, unchanged in content. Original: `brand/logo-original.jpg`. Cleaned (corner leaves removed, background matched to the site cream): `brand/logo-clean-full.png`, shipped as `public/brand/logo.webp`. The app icons (`public/icon-*.png`) are the mermaid-cup part on cream.
+The owner's finished logo, unchanged in content. Original: `brand/logo-original.jpg`. and the site shows the original file untouched, `public/brand/logo.jpg` (same bytes). The app icons (`public/icon-*.png`) are the mermaid-cup part on cream.

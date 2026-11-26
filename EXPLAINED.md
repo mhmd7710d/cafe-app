@@ -17,4 +17,4 @@ Good for explaining the project in an interview.
 His real photos (areas, drinks, food), real menu and prices, final logo, address, phone and hours, WhatsApp booking button.
 
 ## Logo and icons
-The logo is a webp image (46 KB) in an intro band under the hero; the header shows a small cup mark (7 KB). PWA icons 192/512 (plus a maskable one) are listed in `manifest.webmanifest`. The original file is kept in `brand/` (not shipped to phones).
+The logo is his original JPEG, unedited (410 KB), full width in an intro band under the hero; the header shows a small cup mark (7 KB). PWA icons 192/512 (plus a maskable one) are listed in `manifest.webmanifest`. The original file is kept in `brand/` (not shipped to phones).

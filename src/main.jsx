@@ -2,11 +2,11 @@ import React,{useState,useEffect,useRef} from 'react'
 import {createRoot} from 'react-dom/client'
 import './style.css'
 const areas=[
-{i:'🌳',t:'صالة الشباب ١',d:'على النيل مباشرة تحت الأشجار. مكان هادي ومنعزل شوية، مناسب للدومينو والشطرنج.',tag:'شباب'},
-{i:'🎮',t:'صالة الشباب ٢',d:'مرتفعة عن الأرض ومقفولة، شبابيكها على النيل. فيها شاشة للماتشات والبلايستيشن.',tag:'شباب'},
-{i:'🧸',t:'منطقة الأطفال',d:'مقفولة ومحاطة بأسوار لحماية الطفل، وكل الألعاب آمنة جدًا.',tag:'كيدز'},
-{i:'🌿',t:'منطقة العائلات',d:'بجوار الكيدز وقدام النيل مباشرة. خضرة وعشب طبيعي وأشجار، والأهل عينهم على الأطفال ويشوفوا بعض.',tag:'عائلات'},
-{i:'👑',t:'VIP مقفولة',d:'مكان هادي وخدمة مميزة وإحساس مختلف.',tag:'VIP'},
+{i:'🌳',t:'صالة الشباب ١',d:'على كورنيش النيل مباشرة وتحت ظل الأشجار. ركن هادي بعيد عن الزحمة، مثالي لدور دومينو أو مباراة شطرنج رايقة.',tag:'شباب'},
+{i:'🎮',t:'صالة الشباب ٢',d:'صالة مرتفعة ومغلقة بشبابيك بانورامية على النيل. شاشة كبيرة لمتابعة الماتشات مع الشلة، وبلايستيشن لمين يحب يلعب.',tag:'شباب'},
+{i:'🧸',t:'منطقة الأطفال',d:'مساحة مغلقة ومسوّرة بالكامل، وألعابها آمنة تمامًا. طفلك يلعب براحته وأنت مطمئن.',tag:'كيدز'},
+{i:'🌿',t:'منطقة العائلات',d:'بجوار منطقة الأطفال وأمام النيل مباشرة، وسط عشب طبيعي وأشجار وخضرة. تقعدوا مرتاحين وعينكم على الصغار طول الوقت.',tag:'عائلات'},
+{i:'👑',t:'VIP مقفولة',d:'هدوء تام وخدمة مميزة. تجربة مختلفة لمن يحب الخصوصية.',tag:'VIP'},
 {i:'🎉',t:'قاعة المناسبات',d:'لأعياد الميلاد والخطوبة والمناسبات الخاصة.',tag:'مناسبات'},
 {i:'📸',t:'لوكيشن التصوير',d:'ركن مجهز للجلسات والتصوير.',tag:'تصوير'},
 {i:'🍽️',t:'المطعم',d:'وجبات كاملة بجانب المشروبات والحلويات.',tag:'مطعم'}]
@@ -37,7 +37,7 @@ return <>
 <div className="brand">عروس النيل</div><h1><span>مكان</span> <span>لكل</span> <span>لمّة</span></h1><p className="sub">شباب، عائلات، أطفال، VIP، مناسبات وتصوير. كله في مكان واحد.</p>
 <div className="btns"><a className="btn pulse" href="#book">احجز مكانك</a><a className="btn ghost" href="#menu">شوف المنيو</a></div><Waves/></section>
 <div className="marquee" aria-hidden="true"><div>{[...words,...words].map((w,i)=><span key={i}>{w} ✦</span>)}</div></div>
-<section className="stats"><Reveal><Count to={8}/><small>أماكن</small></Reveal><Reveal delay={120}><Count to={2}/><small>صالة شباب</small></Reveal><Reveal delay={240}><Count to={1}/><small>على النيل مباشرة</small></Reveal></section>
+<section className="stats"><Reveal><Count to={8}/><small>أماكن</small></Reveal><Reveal delay={120}><Count to={2}/><small>صالة شباب</small></Reveal><Reveal delay={240}><Count to={1}/><small>قاعة مناسبات</small></Reveal></section>
 
 <section id="areas"><h2>أماكننا</h2><div className="grid">
 {areas.map((a,k)=><Reveal as="article" delay={k%2*100} className="card" key={a.t}><div className="ph">{a.i}</div><span className="tag">{a.tag}</span><h3>{a.t}</h3><p>{a.d}</p></Reveal>)}</div></section>

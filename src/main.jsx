@@ -2,6 +2,7 @@ import React,{useState,useEffect,useRef} from 'react'
 import {createRoot} from 'react-dom/client'
 import './style.css'
 import {drinks,food} from './menuData.js'
+import {ING} from './ingredients.js'
 const P={
 tree:<><circle cx="12" cy="9" r="6"/><path d="M12 15v6M9 21h6M12 12l-2-2M12 14l2-2"/></>,
 game:<><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 10v5M4.5 12.5h5"/><circle cx="15.5" cy="11.5" r=".8"/><circle cx="18" cy="14" r=".8"/></>,
@@ -62,7 +63,7 @@ const desc=it[3]
 const pr=<span className="pr">{kind==='size'||kind==='tier'?<><em>{kind==='size'?'وسط':'عادي'}</em><J v={price[0]}/><em>{kind==='size'?'كبير':'VIP'}</em><J v={price[1]}/></>:<J v={price[0]}/>}</span>
 const open=()=>setSel({it,pr,desc})
 return <li key={it[0]} role="button" tabIndex={0} onClick={open} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}}} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}<small className="hint">اضغط على الصنف تشوف صورته وتفاصيله</small></div><i/>{pr}</li>})}</ul>
-{sel&&<div className="mdl" onClick={()=>setSel(null)}><div className="mcard" role="dialog" aria-label={sel.it[0]} onClick={e=>e.stopPropagation()}><button className="x" aria-label="إغلاق" onClick={()=>setSel(null)}>×</button><img src={MI(PH.get(sel.it))} alt={sel.it[0]} width="560" height="560"/><h3>{sel.it[0]}</h3>{sel.desc&&<p>{sel.desc}</p>}<div className="mp">{sel.pr}</div><small>الصورة للتوضيح</small></div></div>}
+{sel&&<div className="mdl" onClick={()=>setSel(null)}><div className="mcard" role="dialog" aria-label={sel.it[0]} onClick={e=>e.stopPropagation()}><button className="x" aria-label="إغلاق" onClick={()=>setSel(null)}>×</button><img src={MI(PH.get(sel.it))} alt={sel.it[0]} width="560" height="560"/><h3>{sel.it[0]}</h3><p className="ing"><b>المكونات:</b> {sel.desc||ING[PH.get(sel.it)]}</p><div className="mp">{sel.pr}</div></div></div>}
 </section>}
 const WA=['201226622875','201040428475']
 function BookForm(){

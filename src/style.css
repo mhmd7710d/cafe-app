@@ -155,3 +155,5 @@ footer small{display:block;text-align:center;margin-top:22px;opacity:.6;border-t
 .wa{display:grid;gap:8px}.wa span{color:#fff;font-size:14px;font-weight:700}
 .wa .btn{text-align:center}
 .mcard u{text-decoration:none;font:700 14px Body,Cairo;margin-inline-start:3px}
+
+.mcard .ing b{color:var(--green)}

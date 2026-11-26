@@ -1,6 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react'
 import {createRoot} from 'react-dom/client'
 import './style.css'
+import {drinks,food} from './menuData.js'
 const P={
 tree:<><circle cx="12" cy="9" r="6"/><path d="M12 15v6M9 21h6M12 12l-2-2M12 14l2-2"/></>,
 game:<><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 10v5M4.5 12.5h5"/><circle cx="15.5" cy="11.5" r=".8"/><circle cx="18" cy="14" r=".8"/></>,
@@ -38,6 +39,21 @@ const dishes=[['coffee','قهوة مختصة','١٢٠'],['main','أطباق رئ
 const B=n=>import.meta.env.BASE_URL+'brand/'+n+'.webp'
 const LOGO=import.meta.env.BASE_URL+'brand/logo.jpg'
 const I=n=>import.meta.env.BASE_URL+'img/'+n+'.jpg'
+const tabs=[['normal','المنيو العادي'],['vip','VIP'],['food','المطعم']]
+function MenuSection(){
+const [tab,setTab]=useState('normal');const [ci,setCi]=useState(0)
+const cats=tab==='food'?food:drinks
+const cat=cats[Math.min(ci,cats.length-1)]
+const pick=t=>{setTab(t);setCi(0)}
+return <section id="menu" className="menus"><span className="eyebrow dk c">المنيو</span><h2 className="c">رحلة طعم</h2>
+<div className="seg">{tabs.map(([k,n])=><button key={k} className={k===tab?'on':''} onClick={()=>pick(k)}>{n}</button>)}</div>
+<div className="chips">{cats.map((c,i)=><button key={c[0]} className={i===ci?'on':''} onClick={()=>setCi(i)}>{c[0]}</button>)}</div>
+<ul className="list" key={tab+ci}>{cat[1].map((it,k)=>{
+const pz=tab==='food'&&it.length===3
+const price=tab==='food'?(pz?[it[1],it[2]]:[it[1]]):[it[tab==='vip'?2:1]]
+const desc=tab==='food'?null:it[3]
+return <li key={it[0]} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}</div><i/><span className="pr">{pz?<><em>وسط</em>{price[0]}<em>كبير</em>{price[1]}</>:price[0]}</span></li>})}</ul>
+</section>}
 function App(){
 return <>
 <section className="hero" style={{backgroundImage:`url(${I('hero')})`}}><div className="shade"/>
@@ -55,10 +71,7 @@ return <>
 <Reveal delay={100}><span className="eyebrow dk">قصتنا</span><h2>أكتر من مجرد كافيه</h2>
 <p>مكان على النيل وسط الأشجار والخضرة، فيه قعدة للشباب، ومساحة آمنة للأطفال، وركن للعائلات، وVIP مقفولة، وقاعة للمناسبات ولوكيشن للتصوير.</p>
 <a className="btn green" href="#areas">اكتشف أماكننا ←</a></Reveal></section>
-<section id="menu" className="menus"><span className="eyebrow dk c">المنيو</span><h2 className="c">رحلة طعم</h2>
-<div className="dishes">{dishes.map(([im,n,p],k)=><Reveal key={n} delay={k%2*80} className="dish"><img src={I(im)} alt="" loading="lazy"/><div><b>{n}</b><span>{p} ج</span></div></Reveal>)}</div>
-<div className="c"><a className="btn green" href="#book">شوف المنيو كامل ←</a></div>
-<p className="note">الصور والأسعار مؤقتة لحد ما يوصل المنيو الحقيقي.</p></section>
+<MenuSection/>
 <section className="atmo"><Leaf/><Reveal><span className="eyebrow">الأجواء</span><h2>مكان للراحة والاستمتاع</h2><p>خضرة وأشجار، إطلالة على النيل، وهدوء يريّح.</p><a className="btn ghost" href="#areas">استكشف الأماكن</a></Reveal>
 <div className="trio"><img src={I('a1')} alt="" loading="lazy"/><img src={I('a2')} alt="" loading="lazy"/><img src={I('a3')} alt="" loading="lazy"/></div></section>
 <section id="book" className="book" style={{backgroundImage:`url(${I('nile')})`}}><div className="shade"/><div className="in"><span className="eyebrow">الحجز</span><h2>طاولتك مستنياك</h2><p className="sub">احجز دلوقتي واستمتع بوقت لا يتنسي.</p>

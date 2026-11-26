@@ -2,14 +2,14 @@ import React,{useState,useEffect,useRef} from 'react'
 import {createRoot} from 'react-dom/client'
 import './style.css'
 const areas=[
-{i:'🎮',t:'صالة الشباب ١',d:'جلسة واسعة، بلايستيشن وبنج بونج، أجواء حماسية.',tag:'شباب'},
-{i:'🎧',t:'صالة الشباب ٢',d:'هدوء أكتر للمذاكرة والشغل واللمّة الصغيرة.',tag:'شباب'},
-{i:'🧸',t:'منطقة الأطفال',d:'ملعب آمن ومراقب، وأولادك قدام عينك.',tag:'كيدز'},
-{i:'👨‍👩‍👧',t:'منطقة العائلات',d:'خصوصية وراحة، قعدات مريحة للأسرة كلها.',tag:'عائلات'},
-{i:'👑',t:'VIP مقفولة',d:'غرفة خاصة بالكامل بخدمة مخصصة.',tag:'VIP'},
-{i:'🎉',t:'قاعة المناسبات',d:'أعياد ميلاد وخطوبة واجتماعات لحد ٨٠ فرد.',tag:'مناسبات'},
-{i:'📸',t:'لوكيشن التصوير',d:'ركن مصمم للجلسات والبراندات والتصوير.',tag:'تصوير'},
-{i:'🍽️',t:'المطعم',d:'وجبات كاملة من المطبخ للصالة.',tag:'مطعم'}]
+{i:'🌳',t:'صالة الشباب ١',d:'على النيل مباشرة تحت الأشجار. مكان هادي ومنعزل شوية، مناسب للدومينو والشطرنج.',tag:'شباب'},
+{i:'🎮',t:'صالة الشباب ٢',d:'مرتفعة عن الأرض ومقفولة، شبابيكها على النيل. فيها شاشة للماتشات والبلايستيشن.',tag:'شباب'},
+{i:'🧸',t:'منطقة الأطفال',d:'مقفولة ومحاطة بأسوار لحماية الطفل، وكل الألعاب آمنة جدًا.',tag:'كيدز'},
+{i:'🌿',t:'منطقة العائلات',d:'بجوار الكيدز وقدام النيل مباشرة. خضرة وعشب طبيعي وأشجار، والأهل عينهم على الأطفال ويشوفوا بعض.',tag:'عائلات'},
+{i:'👑',t:'VIP مقفولة',d:'مكان هادي وخدمة مميزة وإحساس مختلف.',tag:'VIP'},
+{i:'🎉',t:'قاعة المناسبات',d:'لأعياد الميلاد والخطوبة والمناسبات الخاصة.',tag:'مناسبات'},
+{i:'📸',t:'لوكيشن التصوير',d:'ركن مجهز للجلسات والتصوير.',tag:'تصوير'},
+{i:'🍽️',t:'المطعم',d:'وجبات كاملة بجانب المشروبات والحلويات.',tag:'مطعم'}]
 const menu={'مشروبات ساخنة':[['قهوة تركي','٤٥'],['كابتشينو','٦٥'],['لاتيه','٧٠']],'مشروبات باردة':[['آيس موكا','٨٥'],['سموذي مانجو','٧٥'],['ليمون نعناع','٥٥']],'أكل':[['برجر الزيتون','١٨٠'],['باستا ألفريدو','١٦٠'],['سلطة سيزر','١٣٠']]}
 /* ANIM 1: scroll reveal - adds .in when element enters the screen */
 function Reveal({children,delay=0,as:T='div',className=''}){
@@ -37,7 +37,7 @@ return <>
 <div className="brand">عروس النيل</div><h1><span>مكان</span> <span>لكل</span> <span>لمّة</span></h1><p className="sub">شباب، عائلات، أطفال، VIP، مناسبات وتصوير. كله في مكان واحد.</p>
 <div className="btns"><a className="btn pulse" href="#book">احجز مكانك</a><a className="btn ghost" href="#menu">شوف المنيو</a></div><Waves/></section>
 <div className="marquee" aria-hidden="true"><div>{[...words,...words].map((w,i)=><span key={i}>{w} ✦</span>)}</div></div>
-<section className="stats"><Reveal><Count to={8}/><small>أماكن</small></Reveal><Reveal delay={120}><Count to={80}/><small>فرد في القاعة</small></Reveal><Reveal delay={240}><Count to={100}/><small>صنف</small></Reveal></section>
+<section className="stats"><Reveal><Count to={8}/><small>أماكن</small></Reveal><Reveal delay={120}><Count to={2}/><small>صالة شباب</small></Reveal><Reveal delay={240}><Count to={1}/><small>على النيل مباشرة</small></Reveal></section>
 
 <section id="areas"><h2>أماكننا</h2><div className="grid">
 {areas.map((a,k)=><Reveal as="article" delay={k%2*100} className="card" key={a.t}><div className="ph">{a.i}</div><span className="tag">{a.tag}</span><h3>{a.t}</h3><p>{a.d}</p></Reveal>)}</div></section>

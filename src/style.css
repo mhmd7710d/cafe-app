@@ -122,8 +122,7 @@ footer small{display:block;text-align:center;margin-top:22px;opacity:.6;border-t
 .brandband{margin:0;border-radius:0;padding:0;background:#faeedd;display:block;line-height:0}
 .brandband img{width:100%;max-width:900px;height:auto;margin:auto;display:block}
 .mk{background:#faeedd}
-.brandband{background:var(--cream);margin-top:0}
-.brandband img{-webkit-mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);mask-composite:intersect}
+.brandband{background:#faeedd;margin-top:0}
 
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:20px auto 12px;max-width:520px;border:1.5px solid var(--green)}
 .seg button{font:700 14px Cairo;padding:10px 4px;background:var(--cream);color:var(--green);border:0;cursor:pointer}

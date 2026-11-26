@@ -40,8 +40,8 @@ const B=n=>import.meta.env.BASE_URL+'brand/'+n+'.webp'
 const LOGO=import.meta.env.BASE_URL+'brand/logo.jpg'
 const I=n=>import.meta.env.BASE_URL+'img/'+n+'.jpg'
 const SW=['الوافل','طباق الحلو','ديزارت']
-const drinksOnly=drinks.filter(c=>!SW.includes(c[0]))
-const foodCats=[...food.map(c=>[c[0],c[1],c[0].startsWith('بيتزا')?'size':'one']),...drinks.filter(c=>SW.includes(c[0])).map(c=>[c[0],c[1],'tier'])]
+const drinksOnly=drinks
+const foodCats=[...food.map(c=>[c[0],c[1],c[0].startsWith('بيتزا')?'size':'one'])]
 const tabs=[['normal','المنيو العادي'],['vip','VIP'],['food','المطعم']]
 function MenuSection(){
 const [tab,setTab]=useState('normal');const [ci,setCi]=useState(0)

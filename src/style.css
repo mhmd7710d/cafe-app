@@ -112,3 +112,9 @@ footer small{display:block;text-align:center;margin-top:22px;opacity:.6;border-t
 .card h3{font-size:20px}.card p{font-size:13px;line-height:1.7}
 .card:nth-child(1),.card:nth-child(2){}
 @media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+.mk{display:grid;place-items:center;background:var(--cream);border-radius:12px;padding:3px 5px}.mk img{height:34px;width:auto;display:block}
+.nav b{gap:9px}
+.brandband{position:relative;z-index:2;margin-top:-52px;background:var(--cream);border-radius:28px 28px 0 0;padding:18px 20px 0;text-align:center}
+.brandband img{width:min(100%,330px);height:auto}
+#areas{padding-top:6px}

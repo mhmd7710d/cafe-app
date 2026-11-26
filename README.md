@@ -23,3 +23,6 @@ See [EXPLAINED.md](EXPLAINED.md) for a step-by-step walkthrough of every part.
 ## Design
 Light cream and forest-green look based on the owner's reference. Flat colors, no gradients. Placeholder stock photos: see CREDITS.md. Menu items and prices are placeholders.
 Fonts: El Messiri (headings) + Cairo (body), self-hosted.
+
+## Logo
+The owner's finished logo, unchanged in content. Original: `brand/logo-original.jpg`. Cleaned (corner leaves removed, background matched to the site cream): `brand/logo-clean-full.png`, shipped as `public/brand/logo.webp`. The app icons (`public/icon-*.png`) are the mermaid-cup part on cream.

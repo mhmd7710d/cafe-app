@@ -14,3 +14,6 @@ License: https://www.pexels.com/license/
 
 # Fonts (self-hosted, `public/fonts`)
 - El Messiri (headings) and Cairo (body), from Google Fonts, SIL Open Font License 1.1: https://fonts.google.com/specimen/El+Messiri and https://fonts.google.com/specimen/Cairo
+
+## Menu item photos
+The 132 pictures in public/img/m were generated with an AI image tool as illustrations (not photos of the cafe's real dishes). Replace them with real photos of the cafe's items when available. Each is shown with the note "الصورة للتوضيح".

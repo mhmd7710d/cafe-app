@@ -39,12 +39,16 @@ const dishes=[['coffee','قهوة مختصة','١٢٠'],['main','أطباق رئ
 const B=n=>import.meta.env.BASE_URL+'brand/'+n+'.webp'
 const LOGO=import.meta.env.BASE_URL+'brand/logo.jpg'
 const I=n=>import.meta.env.BASE_URL+'img/'+n+'.jpg'
+const PH=new Map();let _n=0;for(const g of [drinks,food])for(const c of g)for(const it of c[1])PH.set(it,_n++)
+const MI=n=>import.meta.env.BASE_URL+'img/m/'+n+'.webp'
+const J=({v})=><>{v}<u>ج</u></>
 const SW=['الوافل','طباق الحلو','ديزارت']
 const drinksOnly=drinks
 const foodCats=[...food.map(c=>[c[0],c[1],c[0].startsWith('بيتزا')?'size':'one'])]
 const tabs=[['normal','المنيو العادي'],['vip','VIP'],['food','المطعم']]
 function MenuSection(){
-const [tab,setTab]=useState('normal');const [ci,setCi]=useState(0)
+const [tab,setTab]=useState('normal');const [ci,setCi]=useState(0);const [sel,setSel]=useState(null)
+useEffect(()=>{if(!sel)return;const f=e=>e.key==='Escape'&&setSel(null);addEventListener('keydown',f);document.body.style.overflow='hidden';return()=>{removeEventListener('keydown',f);document.body.style.overflow=''}},[sel])
 const cats=tab==='food'?foodCats:drinksOnly
 const cat=cats[Math.min(ci,cats.length-1)]
 const pick=t=>{setTab(t);setCi(0)}
@@ -54,9 +58,22 @@ return <section id="menu" className="menus"><span className="eyebrow dk c">ال�
 <ul className="list" key={tab+ci}>{cat[1].map((it,k)=>{
 const kind=tab==='food'?cat[2]:'drink'
 const price=kind==='size'||kind==='tier'?[it[1],it[2]]:kind==='one'?[it[1]]:[it[tab==='vip'?2:1]]
-const desc=tab==='food'?null:it[3]
-return <li key={it[0]} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}</div><i/><span className="pr">{kind==='size'||kind==='tier'?<><em>{kind==='size'?'وسط':'عادي'}</em>{price[0]}<em>{kind==='size'?'كبير':'VIP'}</em>{price[1]}</>:price[0]}</span></li>})}</ul>
+const desc=it[3]
+const pr=<span className="pr">{kind==='size'||kind==='tier'?<><em>{kind==='size'?'وسط':'عادي'}</em><J v={price[0]}/><em>{kind==='size'?'كبير':'VIP'}</em><J v={price[1]}/></>:<J v={price[0]}/>}</span>
+const open=()=>setSel({it,pr,desc})
+return <li key={it[0]} role="button" tabIndex={0} onClick={open} onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}}} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}<small className="hint">اضغط على الصنف تشوف صورته وتفاصيله</small></div><i/>{pr}</li>})}</ul>
+{sel&&<div className="mdl" onClick={()=>setSel(null)}><div className="mcard" role="dialog" aria-label={sel.it[0]} onClick={e=>e.stopPropagation()}><button className="x" aria-label="إغلاق" onClick={()=>setSel(null)}>×</button><img src={MI(PH.get(sel.it))} alt={sel.it[0]} width="560" height="560"/><h3>{sel.it[0]}</h3>{sel.desc&&<p>{sel.desc}</p>}<div className="mp">{sel.pr}</div><small>الصورة للتوضيح</small></div></div>}
 </section>}
+const WA=['201226622875','201040428475']
+function BookForm(){
+const [f,setF]=useState({a:areas[0].t,d:'',n:'',p:''});const [sent,setSent]=useState(false)
+const u=k=>e=>setF({...f,[k]:e.target.value})
+const msg=`طلب حجز من الموقع:\nالمكان: ${f.a}\nالتاريخ: ${f.d}\nعدد الأفراد: ${f.n}\nرقم الموبايل: ${f.p}`
+return <form className="form" onSubmit={e=>{e.preventDefault();setSent(true)}}>
+<select value={f.a} onChange={u('a')}>{areas.map(a=><option key={a.t}>{a.t}</option>)}</select>
+<input type="date" required value={f.d} onChange={u('d')}/><input type="number" min="1" required placeholder="عدد الأفراد" value={f.n} onChange={u('n')}/><input type="tel" required placeholder="رقم الموبايل" value={f.p} onChange={u('p')}/>
+{!sent?<button className="btn green">احجز الآن ←</button>:<div className="wa"><span>الطلب جاهز. اضغط وابعته على واتساب:</span>{WA.map(n=><a key={n} className="btn green" target="_blank" rel="noopener" href={`https://wa.me/${n}?text=${encodeURIComponent(msg)}`} dir="ltr">واتساب 0{n.slice(2)}</a>)}<button type="button" className="btn ghost" onClick={()=>setSent(false)}>تعديل الطلب</button></div>}
+</form>}
 function App(){
 return <>
 <section className="hero" style={{backgroundImage:`url(${I('hero')})`}}><div className="shade"/>
@@ -78,10 +95,7 @@ return <>
 <section className="atmo"><Leaf/><Reveal><span className="eyebrow">الأجواء</span><h2>مكان للراحة والاستمتاع</h2><p>خضرة وأشجار، إطلالة على النيل، وهدوء يريّح.</p><a className="btn ghost" href="#areas">استكشف الأماكن</a></Reveal>
 <div className="trio"><img src={I('a1')} alt="" loading="lazy"/><img src={I('a2')} alt="" loading="lazy"/><img src={I('a3')} alt="" loading="lazy"/></div></section>
 <section id="book" className="book" style={{backgroundImage:`url(${I('nile')})`}}><div className="shade"/><div className="in"><span className="eyebrow">الحجز</span><h2>طاولتك مستنياك</h2><p className="sub">احجز دلوقتي واستمتع بوقت لا يتنسي.</p>
-<form className="form" onSubmit={e=>e.preventDefault()}>
-<select>{areas.map(a=><option key={a.t}>{a.t}</option>)}</select>
-<input type="date"/><input type="number" placeholder="عدد الأفراد"/><input placeholder="رقم الموبايل"/>
-<button className="btn green">احجز الآن ←</button></form></div></section>
+<BookForm/></div></section>
 <footer><div className="cols"><div><b><Icon n="tree"/>قرية عروس النيل</b><span>أكل حلو، لحظات حلوة.</span></div>
 <div><h4>روابط</h4><a href="#story">عن المكان</a><a href="#areas">الأماكن</a><a href="#menu">المنيو</a><a href="#book">الحجز</a></div>
 <div><h4>تواصل</h4><span>المحمودية – البحيرة – كوبري فوه بجانب العبارة سوليتير</span><a href="tel:01023163617" dir="ltr">01023163617</a><a href="tel:01040428475" dir="ltr">01040428475</a></div>

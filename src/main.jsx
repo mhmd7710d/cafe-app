@@ -32,9 +32,9 @@ const words=['قهوة مختصة','برجر طازج','حلويات','عصاي�
 function App(){
 const [tab,setTab]=useState('مشروبات ساخنة')
 return <>
-<header className="nav"><b>☕ عروس النيل</b><nav><a href="#areas">الأماكن</a><a href="#menu">المنيو</a><a href="#book">احجز</a></nav></header>
+<header className="nav"><b>☕ قرية عروس النيل</b><nav><a href="#areas">الأماكن</a><a href="#menu">المنيو</a><a href="#book">احجز</a></nav></header>
 <section className="hero"><Beans/><Cup/><span className="pill">الصور والمنيو مؤقتة</span>
-<div className="brand">عروس النيل</div><h1><span>مكان</span> <span>لكل</span> <span>لمّة</span></h1><p className="sub">شباب، عائلات، أطفال، VIP، مناسبات وتصوير. كله في مكان واحد.</p>
+<div className="brand">قرية عروس النيل</div><h1><span>مكان</span> <span>لكل</span> <span>لمّة</span></h1><p className="sub">شباب، عائلات، أطفال، VIP، مناسبات وتصوير. كله في مكان واحد.</p>
 <div className="btns"><a className="btn pulse" href="#book">احجز مكانك</a><a className="btn ghost" href="#menu">شوف المنيو</a></div><Waves/></section>
 <div className="marquee" aria-hidden="true"><div>{[...words,...words].map((w,i)=><span key={i}>{w} ✦</span>)}</div></div>
 <section className="stats"><Reveal><Count to={8}/><small>أماكن</small></Reveal><Reveal delay={120}><Count to={2}/><small>صالة شباب</small></Reveal><Reveal delay={240}><Count to={1}/><small>قاعة مناسبات</small></Reveal></section>
@@ -48,7 +48,7 @@ return <>
 <select>{areas.map(a=><option key={a.t}>{a.t}</option>)}</select>
 <input type="date"/><input type="number" placeholder="عدد الأفراد"/><input placeholder="رقم الموبايل"/>
 <button className="btn">أرسل الحجز</button></form></section>
-<footer>© عروس النيل · العنوان · مواعيد العمل</footer>
+<footer>© قرية عروس النيل · العنوان · مواعيد العمل</footer>
 </>}
 createRoot(document.getElementById('root')).render(<App/>)
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js')

@@ -122,3 +122,5 @@ footer small{display:block;text-align:center;margin-top:22px;opacity:.6;border-t
 .brandband{margin:0;border-radius:0;padding:0;background:#faeedd;display:block;line-height:0}
 .brandband img{width:100%;max-width:900px;height:auto;margin:auto;display:block}
 .mk{background:#faeedd}
+.brandband{background:var(--cream);margin-top:0}
+.brandband img{-webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent);mask-composite:intersect}

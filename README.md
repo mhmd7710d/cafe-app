@@ -19,3 +19,6 @@ React 18, Vite, plain CSS (CSS variables), PWA (manifest + service worker), GitH
 Warm beige `#f3e9d7`, olive `#5b6234` / `#3a3f20`, gold accent `#b8923f`.
 
 See [EXPLAINED.md](EXPLAINED.md) for a step-by-step walkthrough of every part.
+
+## Design
+Light cream and forest-green look based on the owner's reference. Flat colors, no gradients. Placeholder stock photos: see CREDITS.md. Menu items and prices are placeholders.

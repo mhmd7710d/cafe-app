@@ -22,3 +22,4 @@ See [EXPLAINED.md](EXPLAINED.md) for a step-by-step walkthrough of every part.
 
 ## Design
 Light cream and forest-green look based on the owner's reference. Flat colors, no gradients. Placeholder stock photos: see CREDITS.md. Menu items and prices are placeholders.
+Fonts: El Messiri (headings) + Cairo (body), self-hosted.

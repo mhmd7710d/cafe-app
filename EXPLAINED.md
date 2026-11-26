@@ -2,7 +2,7 @@
 
 Good for explaining the project in an interview.
 
-1. **index.html** - the only HTML page. `lang="ar" dir="rtl"` makes the page flow right-to-left. Loads two Arabic fonts (Amiri for headings, Cairo for body), links the PWA manifest, mounts React into `<div id="root">`.
+1. **index.html** - the only HTML page. `lang="ar" dir="rtl"` makes the page flow right-to-left. Fonts are self-hosted in `public/fonts` (El Messiri for headings, Cairo for body, Arabic subset, about 43 KB total), declared with `@font-face` in style.css, so no Google request, links the PWA manifest, mounts React into `<div id="root">`.
 2. **src/main.jsx** - the React code. All content is plain JS data: `areas` (8 places), `dishes` (4 menu cards), `feats` (features strip). The page is built with `.map()` over that data, so adding an area is one line, not new HTML. Icons are inline SVG (`Icon` component), so no image downloads.
 3. **Section order** - hero, the 8 areas, features strip, story, menu cards, atmosphere panel, booking, footer. Areas come first because they are the core of the place.
 4. **src/style.css** - flat design: cream base `#f7f2e9`, deep green `#1f3d2b`, small gold accent. Colors are CSS variables in `:root`. No gradients or glows. The photo overlays are one flat semi-transparent green. Mobile-first, with one `@media (min-width:700px)` block for bigger screens.

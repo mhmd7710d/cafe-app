@@ -11,3 +11,6 @@ All from Pexels, free to use under the Pexels License (no attribution required).
 - a2.jpg: https://www.pexels.com/photo/tranquil-riverside-deck-with-lounge-chairs-and-umbrella-35054071/
 - a3.jpg: https://www.pexels.com/photo/scenic-sunset-view-from-wooden-deck-overlooking-river-35450443/
 License: https://www.pexels.com/license/
+
+# Fonts (self-hosted, `public/fonts`)
+- El Messiri (headings) and Cairo (body), from Google Fonts, SIL Open Font License 1.1: https://fonts.google.com/specimen/El+Messiri and https://fonts.google.com/specimen/Cairo

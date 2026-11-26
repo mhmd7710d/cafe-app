@@ -84,8 +84,8 @@ return <>
 <button className="btn green">احجز الآن ←</button></form></div></section>
 <footer><div className="cols"><div><b><Icon n="tree"/>قرية عروس النيل</b><span>أكل حلو، لحظات حلوة.</span></div>
 <div><h4>روابط</h4><a href="#story">عن المكان</a><a href="#areas">الأماكن</a><a href="#menu">المنيو</a><a href="#book">الحجز</a></div>
-<div><h4>تواصل</h4><span>التليفون والعنوان هيتضافوا قريبًا</span></div>
-<div><h4>مواعيد العمل</h4><span>هتتضاف قريبًا</span></div></div><small>© قرية عروس النيل</small></footer>
+<div><h4>تواصل</h4><span>المحمودية – البحيرة – كوبري فوه بجانب العبارة سوليتير</span><a href="tel:01023163617" dir="ltr">01023163617</a><a href="tel:01040428475" dir="ltr">01040428475</a></div>
+<div><h4>مواعيد العمل</h4><span>9 صباحاً ل 3 صباحاً</span><span>الجمعة بعد صلاة الجمعة ل 3 صباحاً</span></div></div><small>© قرية عروس النيل</small></footer>
 </>}
 createRoot(document.getElementById('root')).render(<App/>)
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js')

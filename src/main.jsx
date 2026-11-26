@@ -39,20 +39,23 @@ const dishes=[['coffee','قهوة مختصة','١٢٠'],['main','أطباق رئ
 const B=n=>import.meta.env.BASE_URL+'brand/'+n+'.webp'
 const LOGO=import.meta.env.BASE_URL+'brand/logo.jpg'
 const I=n=>import.meta.env.BASE_URL+'img/'+n+'.jpg'
+const SW=['الوافل','طباق الحلو','ديزارت']
+const drinksOnly=drinks.filter(c=>!SW.includes(c[0]))
+const foodCats=[...food.map(c=>[c[0],c[1],c[0].startsWith('بيتزا')?'size':'one']),...drinks.filter(c=>SW.includes(c[0])).map(c=>[c[0],c[1],'tier'])]
 const tabs=[['normal','المنيو العادي'],['vip','VIP'],['food','المطعم']]
 function MenuSection(){
 const [tab,setTab]=useState('normal');const [ci,setCi]=useState(0)
-const cats=tab==='food'?food:drinks
+const cats=tab==='food'?foodCats:drinksOnly
 const cat=cats[Math.min(ci,cats.length-1)]
 const pick=t=>{setTab(t);setCi(0)}
 return <section id="menu" className="menus"><span className="eyebrow dk c">المنيو</span><h2 className="c">رحلة طعم</h2>
 <div className="seg">{tabs.map(([k,n])=><button key={k} className={k===tab?'on':''} onClick={()=>pick(k)}>{n}</button>)}</div>
 <div className="chips">{cats.map((c,i)=><button key={c[0]} className={i===ci?'on':''} onClick={()=>setCi(i)}>{c[0]}</button>)}</div>
 <ul className="list" key={tab+ci}>{cat[1].map((it,k)=>{
-const pz=tab==='food'&&it.length===3
-const price=tab==='food'?(pz?[it[1],it[2]]:[it[1]]):[it[tab==='vip'?2:1]]
+const kind=tab==='food'?cat[2]:'drink'
+const price=kind==='size'||kind==='tier'?[it[1],it[2]]:kind==='one'?[it[1]]:[it[tab==='vip'?2:1]]
 const desc=tab==='food'?null:it[3]
-return <li key={it[0]} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}</div><i/><span className="pr">{pz?<><em>وسط</em>{price[0]}<em>كبير</em>{price[1]}</>:price[0]}</span></li>})}</ul>
+return <li key={it[0]} style={{animationDelay:(k*40)+'ms'}}><div className="nm"><b>{it[0]}</b>{desc&&<small>{desc}</small>}</div><i/><span className="pr">{kind==='size'||kind==='tier'?<><em>{kind==='size'?'وسط':'عادي'}</em>{price[0]}<em>{kind==='size'?'كبير':'VIP'}</em>{price[1]}</>:price[0]}</span></li>})}</ul>
 </section>}
 function App(){
 return <>

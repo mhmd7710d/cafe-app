@@ -1,28 +1,40 @@
-# قرية عروس النيل - Cafe App (React + Vite PWA)
+# قرية عروس النيل - Cafe App
 
-موقع وتطبيق كافيه بالعربي (RTL)، بيتفتح من الموبايل ويتثبت زي أي أبلكيشن.
-A mobile-first Arabic cafe site/app: youth halls, kids area, family area, VIP room, event hall, photo location and restaurant.
+موقع وتطبيق لكافيه «قرية عروس النيل» بالعربي (RTL)، بيتفتح من الموبايل ويتثبت زي أي أبلكيشن.
 
-**Status:** first design preview. Name, texts, menu, prices and images are placeholders.
+**الموقع اللايف:** https://mhmd7710d.github.io/cafe-app/
 
-## Run
+![لقطة من الموقع](preview.jpg)
+
+## فيه إيه
+- **الأماكن:** ٨ مناطق (صالة شباب ١ و٢، منطقة أطفال، عائلات، VIP، قاعة مناسبات، مكان تصوير، مطعم)، وكارت لكل واحدة.
+- **المنيو:** مشروبات وأكل، بصور وأسعار.
+- **قاعة المناسبات:** ألبوم صور للقاعة (تجهيز الكراسي والممرات، والخلفيات والمنصات).
+- **الحجز:** فورم حجز (اليوم، الساعة، عدد الأفراد، رقم الموبايل). واجهة بس لحد ما يتم ربطه بواتساب أو باك إند.
+- **يتثبت على الموبايل:** PWA، يفتح من الشاشة الرئيسية ويشتغل أوفلاين.
+
+## التقنيات
+React 19 + Vite، CSS عادي بمتغيرات، PWA (manifest + service worker)، والنشر على GitHub Pages عن طريق GitHub Actions (أي push على `main` بينشر لوحده).
+
+## تشغيل محلي
 ```
 npm install
-npm run dev     # local
-npm run build   # production build in dist/
+npm run dev     # نسخة التطوير
+npm run build   # نسخة الإنتاج في dist/
 ```
 
-## Stack
-React 18, Vite, plain CSS (CSS variables), PWA (manifest + service worker), GitHub Pages deploy via Actions.
+## شرح الكود جزء جزء
+[EXPLAINED.md](EXPLAINED.md) فيه شرح كل ملف وكل جزء خطوة بخطوة، مفيد لو حد سأل عن المشروع في انترفيو.
 
-## Colors
-Warm beige `#f3e9d7`, olive `#5b6234` / `#3a3f20`, gold accent `#b8923f`.
+## الصور والحقوق
+صور الأماكن صور ستوك مؤقتة لحد ما تيجي صور المكان الحقيقية، وصور الأكل في المنيو رسومات توضيحية. المصادر والتراخيص في [CREDITS.md](CREDITS.md).
+اللوجو ملف صاحب المكان الأصلي زي ما هو (`brand/logo-original.jpg`)، والموقع بيعرض `public/brand/logo.jpg` بنفس البايتات.
+الخطوط: El Messiri للعناوين و Cairo للنصوص، مستضافة مع الموقع نفسه.
 
-See [EXPLAINED.md](EXPLAINED.md) for a step-by-step walkthrough of every part.
+## ملاحظة
+المنيو والأسعار مبدئية لحد ما تتأكد من صاحب المكان.
 
-## Design
-Light cream and forest-green look based on the owner's reference. Flat colors, no gradients. Placeholder stock photos: see CREDITS.md. Menu items and prices are placeholders.
-Fonts: El Messiri (headings) + Cairo (body), self-hosted.
+## English
+Mobile-first Arabic cafe site and installable app: 8 seating areas, a photo menu, an event-hall photo album, and a booking form (interface only). React 19 + Vite, plain CSS, PWA, deployed to GitHub Pages by GitHub Actions. Menu and prices are still placeholders.
 
-## Logo
-The owner's finished logo, unchanged in content. Original: `brand/logo-original.jpg`. and the site shows the original file untouched, `public/brand/logo.jpg` (same bytes). The app icons (`public/icon-*.png`) are the mermaid-cup part on cream.
+Built by [Mohamed Fathy](https://github.com/mhmd7710d).

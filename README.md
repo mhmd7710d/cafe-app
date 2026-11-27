@@ -37,4 +37,4 @@ npm run build   # نسخة الإنتاج في dist/
 ## English
 Mobile-first Arabic cafe site and installable app: 8 seating areas, a photo menu, an event-hall photo album, and a booking form (interface only). React 19 + Vite, plain CSS, PWA, deployed to GitHub Pages by GitHub Actions. Menu and prices are still placeholders.
 
-Built by [Mohamed Fathy](https://github.com/mhmd7710d).
+Built by [Mohammad Fathi](https://github.com/mhmd7710d).

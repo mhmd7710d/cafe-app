@@ -19,6 +19,7 @@ pin:<><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" c
 clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
 food:<><path d="M6 3v7a2 2 0 0 0 2 2v9M10 3v7a2 2 0 0 1-2 2M8 3v6"/><path d="M17 3c-2 2-3 5-3 8h3v10"/></>}
 const Icon=({n})=><svg className="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{P[n]}</svg>
+const G={'قاعة المناسبات':{p:'e',n:28,c:1}}
 const areas=[
 {i:'tree',t:'صالة الشباب ١',d:'على النيل مباشرة وتحت ظل الأشجار. ركن هادي بعيد عن الزحمة، مثالي لدور دومينو أو مباراة شطرنج رايقة.',tag:'شباب'},
 {i:'game',t:'صالة الشباب ٢',d:'صالة مرتفعة ومغلقة بشبابيك تطل على النيل. شاشة لمتابعة الماتشات مع الشلة، وبلايستيشن لمين يحب يلعب.',tag:'شباب'},
@@ -41,6 +42,7 @@ return <b ref={r}>{n}{suffix}</b>}
 const Leaf=()=><svg className="leaf" viewBox="0 0 120 160" aria-hidden="true"><path d="M60 158C58 110 62 60 60 6" fill="none" stroke="currentColor" strokeWidth="1.5"/><g fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M60 120C30 118 14 96 12 76c28 2 46 18 48 44z"/><path d="M60 90C90 88 106 66 108 46c-28 2-46 18-48 44z"/><path d="M60 58C36 56 24 40 22 24c22 2 36 14 38 34z"/></g></svg>
 const feats=[['cup','قهوة ومشروبات'],['food','وجبات كاملة'],['tree','قعدات على النيل'],['family','أجواء عائلية']]
 const dishes=[['coffee','قهوة مختصة','١٢٠'],['main','أطباق رئيسية','٢٨٠'],['salad','سلطات طازجة','١٦٠'],['dessert','حلويات','١٢٠']]
+const PL=n=>import.meta.env.BASE_URL+'img/places/'+n+'.webp'
 const B=n=>import.meta.env.BASE_URL+'brand/'+n+'.webp'
 const LOGO=import.meta.env.BASE_URL+'brand/logo.jpg'
 const I=n=>import.meta.env.BASE_URL+'img/'+n+'.jpg'
@@ -89,8 +91,16 @@ return <form className="form" onSubmit={e=>{e.preventDefault();if(!f.d||!f.t)ret
 <label>اليوم<input type="date" required value={f.d} onChange={u('d')} onInput={u('d')}/></label><label>الساعة<input type="time" required value={f.t} onChange={u('t')} onInput={u('t')}/></label><input type="number" min="1" required placeholder="عدد الأفراد" value={f.n} onChange={u('n')}/><input type="tel" required placeholder="رقم الموبايل" value={f.p} onChange={u('p')}/>
 {!sent?<button className="btn green">احجز الآن ←</button>:<div className="wa"><span>الطلب جاهز. اضغط وابعته على واتساب:</span><pre className="pv">{msg}</pre>{WA.map(n=><a key={n} className="btn green" target="_blank" rel="noopener" href={`https://wa.me/${n}?text=${encodeURIComponent(msg)}`} dir="ltr">واتساب 0{n.slice(2)}</a>)}<button type="button" className="btn ghost" onClick={()=>setSent(false)}>تعديل الطلب</button></div>}
 </form>}
+function Gallery({t,onClose}){const g=G[t];const [o,setO]=useState(null)
+useEffect(()=>{document.body.style.overflow='hidden';const k=e=>{if(e.key==='Escape')o==null?onClose():setO(null)};addEventListener('keydown',k);return()=>{document.body.style.overflow='';removeEventListener('keydown',k)}},[o])
+const L=Array.from({length:g.n},(_,i)=>g.p+(i+1));const go=d=>setO((o+d+g.n)%g.n)
+return <div className="gal" role="dialog" aria-label={t}><div className="gh"><b>{t}</b><button onClick={onClose} aria-label="إغلاق">✕</button></div>
+{o==null?<div className="gg">{L.map((n,i)=><button key={n} onClick={()=>setO(i)}><img src={PL(n+'t')} alt={t} loading="lazy" width="420" height="315"/></button>)}</div>
+:<div className="gv"><img src={PL(L[o])} alt={t}/><div className="gn"><button onClick={()=>go(1)} aria-label="التالي">›</button><span>{o+1} / {g.n}</span><button onClick={()=>go(-1)} aria-label="السابق">‹</button></div><button className="gb" onClick={()=>setO(null)}>كل الصور</button></div>}</div>}
 function App(){
+const [gal,setGal]=useState(null)
 return <>
+{gal&&<Gallery t={gal} onClose={()=>setGal(null)}/>}
 <section className="hero" style={{backgroundImage:`url(${I('hero')})`}}><div className="shade"/>
 <header className="nav"><b><span className="mk"><img src={B('mark')} alt=""/></span>قرية عروس النيل</b><nav><a href="#story">عن المكان</a><a href="#areas">الأماكن</a><a href="#menu">المنيو</a><a href="#book">الحجز</a></nav><a className="btn sm ghost" href="#book">احجز طاولة</a></header>
 <div className="in">
@@ -100,7 +110,7 @@ return <>
 <div className="btns"><a className="btn green" href="#menu">استكشف المنيو ←</a><a className="btn ghost" href="#book">احجز طاولة</a></div></div></section>
 <div className="brandband"><img src={LOGO} alt="شعار قرية عروس النيل" width="1536" height="1024"/></div>
 <section id="areas"><span className="eyebrow dk c">أماكننا</span><h2 className="c">أقسامنا ومكان لكل لمّة</h2><div className="grid">
-{areas.map((a,k)=><Reveal as="article" delay={k%2*80} className="card" key={a.t}><div className="ph"><Icon n={a.i}/><small>مكان الصورة</small></div><div className="tx"><span className="tag">{a.tag}</span><h3>{a.t}</h3><p>{a.d}</p></div></Reveal>)}</div></section>
+{areas.map((a,k)=>{const g=G[a.t];return <Reveal as="article" delay={k%2*80} className="card" key={a.t}>{g?<button className="cover" onClick={()=>setGal(a.t)} aria-label={'صور '+a.t}><img src={PL(g.p+g.c+'t')} alt={a.t} loading="lazy" width="420" height="315"/><span>{g.n} صورة</span></button>:<div className="ph"><Icon n={a.i}/><small>مكان الصورة</small></div>}<div className="tx"><span className="tag">{a.tag}</span><h3>{a.t}</h3><p>{a.d}</p>{g&&<button className="btn green sm gbtn" onClick={()=>setGal(a.t)}>شاهد الصور</button>}</div></Reveal>})}</div></section>
 <section className="feats">{feats.map(([n,t])=><Reveal key={t} className="f"><Icon n={n}/><span>{t}</span></Reveal>)}</section>
 <section id="story" className="story"><Leaf/><Reveal className="pic"><img src={I('story')} alt="" loading="lazy"/></Reveal>
 <Reveal delay={100}><span className="eyebrow dk">قصتنا</span><h2>أكتر من مجرد كافيه</h2>
